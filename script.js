@@ -200,7 +200,6 @@ startBtn.addEventListener('click', () => {
   if (gameInterval) clearInterval(gameInterval);
   snakeColor = colorPicker.value;
   resetGame();
-  direction = 'RIGHT';
   gameInterval = setInterval(draw, speed);
 });
 
