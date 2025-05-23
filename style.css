@@ -1,0 +1,70 @@
+body {
+  background-color: #1f1f1f;
+  color: #ccc;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 20px;
+}
+canvas {
+  background-color: #2a2a2a;
+  border: 2px solid #6C63FF;
+  margin-top: 20px;
+}
+#controls {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#colorPicker {
+  width: 50px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+}
+#startBtn {
+  background-color: #6C63FF;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+#startBtn:hover {
+  background-color: #574fcf;
+}
+#touch-controls {
+  display: none; /* escondido por padrão */
+}
+
+@media (max-width: 768px) {
+  #touch-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: grid;
+    grid-template-columns: repeat(3, 60px);
+    grid-template-rows: repeat(2, 60px);
+    gap: 10px;
+    justify-items: center;
+    align-items: center;
+    z-index: 10;
+  }
+
+  #touch-controls button {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    border-radius: 12px;
+    background-color: #6C63FF;
+    color: white;
+    border: none;
+    font-weight: bold;
+  }
+}

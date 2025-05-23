@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Jogo da Cobrinha</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<h1>Jogo da Cobrinha</h1>
+
+<div id="controls">
+  <label for="colorPicker">Cor da cobra:</label>
+  <input type="color" id="colorPicker" value="#6C63FF" />
+  <button id="startBtn">Start</button>
+</div>
+
+
+<canvas id="game" width="450" height="450"></canvas>
+
+<div id="touch-controls">
+  <button onclick="setDirection('UP')">↑</button><br>
+  <button onclick="setDirection('LEFT')">←</button>
+  <button onclick="setDirection('DOWN')">↓</button>
+  <button onclick="setDirection('RIGHT')">→</button>
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
