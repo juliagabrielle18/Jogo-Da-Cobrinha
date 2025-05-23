@@ -1,7 +1,8 @@
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 const box = 25;
-const gridSize = canvas.width / box;
+
+let gridSizeX, gridSizeY;
 
 let snake = [];
 let direction = null;
@@ -12,6 +13,19 @@ let speed = 200;
 let gameInterval = null;
 let snakeColor = '#6C63FF';
 
+
+function setCanvasSize() {
+  const maxWidth = window.innerWidth * 0.95;  
+  const maxHeight = window.innerHeight * 0.6; 
+
+  canvas.width = Math.floor(maxWidth / box) * box;
+  canvas.height = Math.floor(maxHeight / box) * box;
+
+  gridSizeX = canvas.width / box;
+  gridSizeY = canvas.height / box;
+}
+
+// Função para clarear a cor (para o corpo da cobra)
 function lightenColor(color, percent) {
   const num = parseInt(color.replace('#', ''), 16),
     amt = Math.round(2.55 * percent),
@@ -39,8 +53,8 @@ function generateFood() {
   let newFood;
   do {
     newFood = {
-      x: Math.floor(Math.random() * gridSize) * box,
-      y: Math.floor(Math.random() * gridSize) * box,
+      x: Math.floor(Math.random() * gridSizeX) * box,
+      y: Math.floor(Math.random() * gridSizeY) * box,
     };
   } while (isOnSnake(newFood));
   food = newFood;
@@ -91,7 +105,7 @@ function drawFood() {
   ctx.arc(food.x + box / 2, food.y + box / 2, box / 2 - 3, 0, Math.PI * 2);
   ctx.fill();
 
-  // Efeito simples de brilho (pode melhorar com animação depois)
+  // Brilho simples
   ctx.strokeStyle = 'rgba(255, 60, 0, 0.5)';
   ctx.lineWidth = 2;
   ctx.beginPath();
@@ -167,6 +181,7 @@ function resetGame() {
   speed = 200;
   generateFood();
   clearInterval(gameInterval);
+ 
 }
 
 document.addEventListener('keydown', event => {
@@ -176,6 +191,7 @@ document.addEventListener('keydown', event => {
   else if (event.key === 'ArrowRight' && direction !== 'LEFT') direction = 'RIGHT';
   else if (event.key === 'ArrowDown' && direction !== 'UP') direction = 'DOWN';
 });
+
 
 const startBtn = document.getElementById('startBtn');
 const colorPicker = document.getElementById('colorPicker');
@@ -188,42 +204,30 @@ startBtn.addEventListener('click', () => {
   gameInterval = setInterval(draw, speed);
 });
 
+
 function setDirection(newDir) {
   if (
     (newDir === 'LEFT' && direction !== 'RIGHT') ||
     (newDir === 'RIGHT' && direction !== 'LEFT') ||
     (newDir === 'UP' && direction !== 'DOWN') ||
-    (newDir === 'DOWN' && direction !== 'UP')
+    (newDir === 'DOWN' && direction !== 'UP') ||
+    direction === null 
   ) {
     direction = newDir;
   }
 }
 
-generateFood();
-function resizeCanvas() {
-  // Largura máxima do canvas (pode ajustar conforme desejar)
-  const maxWidth = window.innerWidth * 0.9;
-  const maxHeight = window.innerHeight * 0.6;
+// Botões para mobile 
+document.getElementById('upBtn')?.addEventListener('click', () => setDirection('UP'));
+document.getElementById('downBtn')?.addEventListener('click', () => setDirection('DOWN'));
+document.getElementById('leftBtn')?.addEventListener('click', () => setDirection('LEFT'));
+document.getElementById('rightBtn')?.addEventListener('click', () => setDirection('RIGHT'));
 
-  // Quantidade de "boxes" na grade (por ex. 20x20)
-  const boxesAcross = 20;
 
-  // Calcula o tamanho do box para caber dentro da tela
-  const boxSize = Math.floor(Math.min(maxWidth, maxHeight) / boxesAcross);
+window.addEventListener('resize', () => {
+  setCanvasSize();
+  resetGame();
+});
 
-  canvas.width = boxSize * boxesAcross;
-  canvas.height = boxSize * boxesAcross;
-
-  // Atualize variáveis globais para o novo box e gridSize
-  box = boxSize;
-  gridSize = boxesAcross;
-
-  // Redesenha comida e cobra para evitar posição fora da tela
-  generateFood();
-  draw();
-}
-
-window.addEventListener('resize', resizeCanvas);
-
-// Chame ao iniciar o jogo:
-resizeCanvas();
+setCanvasSize();
+resetGame();

@@ -94,3 +94,41 @@ canvas {
     border-radius: 10px;
   }
 }
+canvas {
+  width: 100%;
+  max-width: 400px; /* limite pra não ficar gigante no desktop */
+  height: auto;
+  background-color: #2a2a2a;
+  border: 2px solid #6C63FF;
+  margin-top: 20px;
+  touch-action: none; /* evita scroll ao tocar no canvas */
+}
+
+#controls {
+  flex-wrap: wrap;
+  max-width: 400px;
+  width: 100%;
+  justify-content: center;
+}
+
+#touch-controls {
+  display: grid;
+  max-width: 400px;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  justify-items: center;
+  margin-top: 20px;
+}
+
+#touch-controls button {
+  width: 100%;
+  max-width: 60px;
+  height: 60px;
+  font-size: 24px;
+  border-radius: 12px;
+  background-color: #6C63FF;
+  color: white;
+  border: none;
+  font-weight: bold;
+}
