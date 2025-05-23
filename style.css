@@ -68,3 +68,29 @@ canvas {
     font-weight: bold;
   }
 }
+@media (max-width: 768px) {
+  #touch-controls {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 60px);
+    gap: 8px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    justify-items: center;
+    align-items: center;
+    z-index: 10;
+    background: rgba(31, 31, 31, 0.9);
+  }
+
+  #touch-controls button {
+    width: 100%;
+    max-width: 60px;
+    height: 50px;
+    font-size: 22px;
+    border-radius: 10px;
+  }
+}

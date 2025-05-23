@@ -200,3 +200,30 @@ function setDirection(newDir) {
 }
 
 generateFood();
+function resizeCanvas() {
+  // Largura máxima do canvas (pode ajustar conforme desejar)
+  const maxWidth = window.innerWidth * 0.9;
+  const maxHeight = window.innerHeight * 0.6;
+
+  // Quantidade de "boxes" na grade (por ex. 20x20)
+  const boxesAcross = 20;
+
+  // Calcula o tamanho do box para caber dentro da tela
+  const boxSize = Math.floor(Math.min(maxWidth, maxHeight) / boxesAcross);
+
+  canvas.width = boxSize * boxesAcross;
+  canvas.height = boxSize * boxesAcross;
+
+  // Atualize variáveis globais para o novo box e gridSize
+  box = boxSize;
+  gridSize = boxesAcross;
+
+  // Redesenha comida e cobra para evitar posição fora da tela
+  generateFood();
+  draw();
+}
+
+window.addEventListener('resize', resizeCanvas);
+
+// Chame ao iniciar o jogo:
+resizeCanvas();
