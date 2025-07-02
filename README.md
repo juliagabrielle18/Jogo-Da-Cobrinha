@@ -18,6 +18,6 @@ Um jogo clássico da cobrinha feito com HTML, CSS e JavaScript.
 ### Rodando localmente
 
 ```bash
-git clone https://github.com/seu-usuario/jogo-da-cobrinha.git
+git clone https://github.com/juliagabrielle18/Jogo-Da-Cobrinha
 cd jogo-da-cobrinha
 
