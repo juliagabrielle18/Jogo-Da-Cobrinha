@@ -1,33 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Jogo da Cobrinha</title>
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jogo da Cobrinha</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<h1>Jogo da Cobrinha</h1>
+  <div class="container">
+    <h1>Jogo da Cobrinha</h1>
 
-<div id="controls">
-  <label for="colorPicker">Cor da cobra:</label>
-  <input type="color" id="colorPicker" value="#6C63FF" />
-  <button id="startBtn">Start</button>
-</div>
+    <div id="controls">
+      <label for="colorPicker">Cor da cobra:</label>
+      <input type="color" id="colorPicker" value="#6C63FF" />
+      <button id="startBtn">Iniciar</button>
+    </div>
 
-
-<canvas id="game" width="450" height="450"></canvas>
-
-  <div id="directionButtons">
-    <button id="upBtn" aria-label="Mover para cima">↑</button>
-    <button id="leftBtn" aria-label="Mover para esquerda">←</button>
-    <button id="downBtn" aria-label="Mover para baixo">↓</button>
-    <button id="rightBtn" aria-label="Mover para direita">→</button>
+    <div id="scoreDisplay">Pontuação: 0</div>
+    <canvas id="game"></canvas>
   </div>
 
-
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
